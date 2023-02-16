@@ -12,7 +12,7 @@ import java.util.Map;
 
 @Service
 @AllArgsConstructor
-public class DateService {
+public class DataService {
     private final TemperatureRepository repository;
     private Date currentDate;
 

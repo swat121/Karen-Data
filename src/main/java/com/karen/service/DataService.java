@@ -5,10 +5,7 @@ import com.karen.repository.TemperatureRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @AllArgsConstructor
@@ -17,6 +14,7 @@ public class DataService {
     private Date currentDate;
 
     public Temperature saveTemperature(double degrees) {
+        TimeZone.setDefault( TimeZone.getTimeZone("UTC+2"));
         currentDate = new Date();
         return repository.save(Temperature.builder()
                 .date(currentDate)

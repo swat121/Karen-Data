@@ -18,7 +18,7 @@ public class Temperature {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int degreesCelsius;
+    private double degreesCelsius;
 
     @Temporal(TemporalType.DATE)
     private Date date;

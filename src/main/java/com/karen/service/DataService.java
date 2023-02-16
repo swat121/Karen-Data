@@ -16,7 +16,7 @@ public class DataService {
     private final TemperatureRepository repository;
     private Date currentDate;
 
-    public Temperature saveTemperature(int degrees) {
+    public Temperature saveTemperature(double degrees) {
         currentDate = new Date();
         return repository.save(Temperature.builder()
                 .date(currentDate)

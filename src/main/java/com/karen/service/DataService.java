@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.*;
 
 @Service
@@ -15,8 +16,8 @@ public class DataService {
     private final TemperatureRepository repository;
 
     public Temperature saveTemperature(double degrees) {
-        LocalDate myDate = LocalDate.now();
-        LocalTime myTime = LocalTime.now();
+        LocalDate myDate = LocalDate.now(ZoneId.of("Europe/Kiev"));
+        LocalTime myTime = LocalTime.now(ZoneId.of("Europe/Kiev"));
         return repository.save(Temperature.builder()
                 .date(myDate)
                 .time(myTime)

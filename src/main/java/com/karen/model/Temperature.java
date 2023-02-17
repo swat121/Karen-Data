@@ -6,7 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Data
 @Entity
@@ -21,8 +22,8 @@ public class Temperature {
     private double degreesCelsius;
 
     @Temporal(TemporalType.DATE)
-    private Date date;
+    private LocalDate date;
 
     @Temporal(TemporalType.TIME)
-    private Date time;
+    private LocalTime time;
 }

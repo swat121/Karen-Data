@@ -5,19 +5,21 @@ import com.karen.repository.TemperatureRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.*;
 
 @Service
 @AllArgsConstructor
 public class DataService {
     private final TemperatureRepository repository;
-    private Date currentDate;
 
     public Temperature saveTemperature(double degrees) {
-        currentDate = new Date();
+        LocalDate myDate = LocalDate.now();
+        LocalTime myTime = LocalTime.now();
         return repository.save(Temperature.builder()
-                .date(currentDate)
-                .time(currentDate)
+                .date(myDate)
+                .time(myTime)
                 .degreesCelsius(degrees)
                 .build());
     }

@@ -21,9 +21,9 @@ public class Temperature {
 
     private double degreesCelsius;
 
-    @Temporal(TemporalType.DATE)
+    @Column(columnDefinition = "DATE")
     private LocalDate date;
 
-    @Temporal(TemporalType.TIME)
+    @Column(columnDefinition = "TIME")
     private LocalTime time;
 }

@@ -16,7 +16,7 @@ public class ClientAPIController {
     }
 
     @PostMapping("/clients")
-    public Client setClient(@RequestParam(value = "ip", required = true) String ip, @RequestParam(value = "name", required = true) String name) {
-        return dataService.setClient(name, ip);
+    public Client setClient(@RequestBody Client client) {
+        return dataService.setClient(client);
     }
 }

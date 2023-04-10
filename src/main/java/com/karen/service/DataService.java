@@ -43,12 +43,7 @@ public class DataService {
         return clientRepository.findByName(name);
     }
 
-    public Client setClient(String name, String ipAddress) {
-        Client client = new Client();
-        client.setIp(ipAddress);
-        client.setName(name);
-
-//        "Client saved name: " + name + " | ip: " + ipAddress;
+    public Client setClient(Client client) {
         return clientRepository.save(client);
     }
 }

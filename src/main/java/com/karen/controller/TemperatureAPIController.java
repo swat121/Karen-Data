@@ -11,7 +11,7 @@ import java.util.Map;
 
 @RestController
 @AllArgsConstructor
-public class DataBaseApiController {
+public class TemperatureAPIController {
 
     private final DataService dataService;
 

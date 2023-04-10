@@ -11,12 +11,17 @@ public class ClientAPIController {
 
     private final DataService dataService;
     @GetMapping("/clients/{name}")
-    public String getClient(@PathVariable String name) {
-        return dataService.getIpByName(name);
+    public Client getClient(@PathVariable String name) {
+        return dataService.getClientByName(name);
     }
 
     @PostMapping("/clients")
     public Client setClient(@RequestBody Client client) {
         return dataService.setClient(client);
+    }
+
+    @PostMapping("/client/update")
+    public int updateClient(@RequestBody Client client) {
+        return dataService.updateClient(client);
     }
 }

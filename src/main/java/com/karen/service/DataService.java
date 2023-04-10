@@ -39,11 +39,15 @@ public class DataService {
         return response;
     }
 
-    public String getIpByName(String name) {
-        return clientRepository.findByName(name);
+    public Client getClientByName(String name) {
+        return clientRepository.findClientByName(name);
     }
 
     public Client setClient(Client client) {
         return clientRepository.save(client);
+    }
+
+    public int updateClient(Client client) {
+        return clientRepository.updateClientInfo(client.getIp(), client.getSsid(), client.getName());
     }
 }

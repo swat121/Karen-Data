@@ -43,11 +43,19 @@ public class DataService {
         return clientRepository.findClientByName(name);
     }
 
+    public List<Client> getAllClients() {
+        return clientRepository.findAll();
+    }
+
     public Client setClient(Client client) {
         return clientRepository.save(client);
     }
 
     public int updateClient(Client client) {
         return clientRepository.updateClientInfo(client.getIp(), client.getSsid(), client.getName());
+    }
+
+    public void deleteAllClients() {
+        clientRepository.deleteAll();
     }
 }

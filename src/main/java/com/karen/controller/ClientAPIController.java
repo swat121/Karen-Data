@@ -13,27 +13,27 @@ public class ClientAPIController {
 
     private final DataService dataService;
 
-    @GetMapping("/clients/{name}")
+    @GetMapping("/api/v1/clients/{name}")
     public Client getClient(@PathVariable String name) {
         return dataService.getClientByName(name);
     }
 
-    @GetMapping("/clients")
+    @GetMapping("/api/v1/clients")
     public List<Client> getClients() {
         return dataService.getAllClients();
     }
 
-    @PostMapping("/clients")
+    @PostMapping("/api/v1/clients")
     public Client setClient(@RequestBody Client client) {
         return dataService.setClient(client);
     }
 
-    @PostMapping("/client/update")
+    @PutMapping("/api/v1/client")
     public int updateClient(@RequestBody Client client) {
         return dataService.updateClient(client);
     }
 
-    @DeleteMapping("/clients")
+    @DeleteMapping("/api/v1/clients")
     public void deleteClients() {
         dataService.deleteAllClients();
     }

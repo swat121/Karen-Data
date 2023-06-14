@@ -32,6 +32,11 @@ public class UserAPIController {
         return userService.addUser(user);
     }
 
+    @PutMapping("/api/v1/user")
+    public int updateUser(@RequestBody User user) {
+        return userService.updateUser(user);
+    }
+
     @DeleteMapping("/api/v1/users")
     public void deleteUsers() {
         userService.deleteAllUsers();

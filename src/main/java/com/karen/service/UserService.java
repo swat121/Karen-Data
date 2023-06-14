@@ -31,6 +31,10 @@ public class UserService {
                 .build());
     }
 
+    public int updateUser(User user) {
+        return userRepository.updateUserInfo(user.getTelegramId(), user.getName());
+    }
+
     public void deleteAllUsers() {
         userRepository.deleteAll();
     }

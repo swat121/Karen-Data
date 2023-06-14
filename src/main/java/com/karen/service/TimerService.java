@@ -32,4 +32,12 @@ public class TimerService {
         timer.setTimeOff(myTime.plusHours(timer.getTimerTime()));
         return timerRepository.save(timer);
     }
+
+    public int updateTimer(Timer timer) {
+        return timerRepository.updateTimerInfo(timer.getStatus(), timer.getMicroName(), timer.getSwitcherName());
+    }
+
+    public void deleteTimerByMicroName(String name) {
+        timerRepository.deleteByMicroName(name);
+    }
 }

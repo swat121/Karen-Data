@@ -1,5 +1,6 @@
 package com.karen.controller;
 
+import com.karen.model.Client;
 import com.karen.model.Timer;
 import com.karen.service.TimerService;
 import lombok.AllArgsConstructor;
@@ -31,5 +32,16 @@ public class TimerController {
     @PostMapping("/api/v1/timer")
     public Timer setTimer(@RequestBody Timer timer) {
         return timerService.saveTimer(timer);
+    }
+
+    @PutMapping("/api/v1/timer")
+    public int updateTimer(@RequestBody Timer timer) {
+        return timerService.updateTimer(timer);
+    }
+
+
+    @DeleteMapping("/api/v1/timers/{micro}")
+    public void deleteTimerByMicroName(@PathVariable String micro) {
+        timerService.deleteTimerByMicroName(micro);
     }
 }

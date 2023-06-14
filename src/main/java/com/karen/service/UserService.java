@@ -1,38 +1,47 @@
 package com.karen.service;
 
-import com.karen.model.User;
+import com.karen.dto.TelegramUserDto;
+import com.karen.dto.TimerDto;
+import com.karen.model.TelegramUser;
 import com.karen.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 @Service
 @AllArgsConstructor
 public class UserService {
+    private final ModelMapper modelMapper;
+
     private final UserRepository userRepository;
 
-    public List<User> getUsers() {
-        return userRepository.findAll();
+    private final Type listType = new TypeToken<List<TelegramUserDto>>() {}.getType();
+
+    public List<TelegramUserDto> getUsers() {
+        return modelMapper.map(userRepository.findAll(), listType);
     }
 
-    public User getUserByName(String name) {
-        return userRepository.findUserByName(name);
+    public TelegramUserDto getUserByName(String name) {
+        return modelMapper.map(userRepository.findUserByName(name), TelegramUserDto.class);
     }
 
-    public User getUserByTelegramId(String id) {
-        return userRepository.findUserByTelegramId(id);
+    public TelegramUserDto getUserByTelegramId(String id) {
+        return modelMapper.map(userRepository.findUserByTelegramId(id), TelegramUserDto.class);
     }
 
-    public User addUser(User user) {
-        return userRepository.save(User.builder()
-                .name(user.getName())
-                .telegramId(user.getTelegramId())
-                .build());
+    public TelegramUserDto addUser(TelegramUser telegramUser) {
+        return modelMapper.map(userRepository.save(TelegramUser.builder()
+                .name(telegramUser.getName())
+                .telegramId(telegramUser.getTelegramId())
+                .build()), TelegramUserDto.class);
     }
 
-    public int updateUser(User user) {
-        return userRepository.updateUserInfo(user.getTelegramId(), user.getName());
+    public int updateUser(TelegramUserDto telegramUser) {
+        return userRepository.updateUserInfo(telegramUser.getTelegramId(), telegramUser.getName());
     }
 
     public void deleteAllUsers() {

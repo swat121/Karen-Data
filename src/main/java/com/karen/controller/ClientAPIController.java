@@ -1,7 +1,8 @@
 package com.karen.controller;
 
+import com.karen.dto.ClientDto;
 import com.karen.model.Client;
-import com.karen.service.DataService;
+import com.karen.service.ClientService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,30 +12,30 @@ import java.util.List;
 @AllArgsConstructor
 public class ClientAPIController {
 
-    private final DataService dataService;
+    private final ClientService clientService;
 
     @GetMapping("/api/v1/clients/{name}")
-    public Client getClient(@PathVariable String name) {
-        return dataService.getClientByName(name);
+    public ClientDto getClient(@PathVariable String name) {
+        return clientService.getClientByName(name);
     }
 
     @GetMapping("/api/v1/clients")
-    public List<Client> getClients() {
-        return dataService.getAllClients();
+    public List<ClientDto> getClients() {
+        return clientService.getAllClients();
     }
 
     @PostMapping("/api/v1/clients")
-    public Client setClient(@RequestBody Client client) {
-        return dataService.setClient(client);
+    public ClientDto setClient(@RequestBody Client client) {
+        return clientService.setClient(client);
     }
 
     @PutMapping("/api/v1/client")
-    public int updateClient(@RequestBody Client client) {
-        return dataService.updateClient(client);
+    public int updateClient(@RequestBody ClientDto client) {
+        return clientService.updateClient(client);
     }
 
     @DeleteMapping("/api/v1/clients")
     public void deleteClients() {
-        dataService.deleteAllClients();
+        clientService.deleteAllClients();
     }
 }

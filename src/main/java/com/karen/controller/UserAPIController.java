@@ -1,6 +1,7 @@
 package com.karen.controller;
 
-import com.karen.model.User;
+import com.karen.dto.TelegramUserDto;
+import com.karen.model.TelegramUser;
 import com.karen.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -13,28 +14,28 @@ public class UserAPIController {
     private final UserService userService;
 
     @GetMapping("/api/v1/users")
-    public List<User> getUsers() {
+    public List<TelegramUserDto> getUsers() {
         return userService.getUsers();
     }
 
     @GetMapping("/api/v1/users/{name}")
-    public User getUserByName(@PathVariable String name) {
+    public TelegramUserDto getUserByName(@PathVariable String name) {
         return userService.getUserByName(name);
     }
 
     @GetMapping("/api/v1/users/{id}")
-    public User getUserByTelegramId(@PathVariable String id) {
+    public TelegramUserDto getUserByTelegramId(@PathVariable String id) {
         return userService.getUserByTelegramId(id);
     }
 
     @PostMapping("/api/v1/users")
-    public User setUser(@RequestBody User user) {
-        return userService.addUser(user);
+    public TelegramUserDto setUser(@RequestBody TelegramUser telegramUser) {
+        return userService.addUser(telegramUser);
     }
 
     @PutMapping("/api/v1/user")
-    public int updateUser(@RequestBody User user) {
-        return userService.updateUser(user);
+    public int updateUser(@RequestBody TelegramUserDto telegramUser) {
+        return userService.updateUser(telegramUser);
     }
 
     @DeleteMapping("/api/v1/users")

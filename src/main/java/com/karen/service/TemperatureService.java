@@ -1,6 +1,5 @@
 package com.karen.service;
 
-import com.karen.dto.ClientDto;
 import com.karen.dto.TemperatureDto;
 import com.karen.model.Temperature;
 import com.karen.repository.TemperatureRepository;
@@ -26,7 +25,7 @@ import java.util.Map;
 @EnableAsync
 @EnableScheduling
 @RequiredArgsConstructor
-public class TempService {
+public class TemperatureService {
     private final ConnectionService connectionService;
     private final TemperatureRepository temperatureRepository;
 

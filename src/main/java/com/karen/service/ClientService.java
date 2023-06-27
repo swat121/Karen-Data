@@ -27,7 +27,13 @@ public class ClientService {
         return modelMapper.map(clientRepository.findAll(), listType);
     }
 
-    public ClientDto setClient(Client client) {
+    public ClientDto setClient(ClientDto clientDto) {
+        Client client = Client.builder()
+                .ip(clientDto.getIp())
+                .mac(clientDto.getMac())
+                .ssid(clientDto.getSsid())
+                .name(clientDto.getName())
+                .build();
         return modelMapper.map(clientRepository.save(client), ClientDto.class);
     }
 

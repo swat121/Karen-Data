@@ -25,8 +25,8 @@ public class ClientAPIController {
     }
 
     @PostMapping("/api/v1/clients")
-    public ClientDto setClient(@RequestBody Client client) {
-        return clientService.setClient(client);
+    public ClientDto setClient(@RequestBody ClientDto clientDto) {
+        return clientService.setClient(clientDto);
     }
 
     @PutMapping("/api/v1/client")

@@ -1,10 +1,7 @@
 package com.karen.controller;
 
 import com.karen.dto.TemperatureDto;
-import com.karen.endpoints.TempEndpoints;
-import com.karen.model.Temperature;
-import com.karen.service.ClientService;
-import com.karen.service.TempService;
+import com.karen.service.TemperatureService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,20 +12,20 @@ import java.util.Map;
 @AllArgsConstructor
 public class TemperatureAPIController {
 
-    private final TempService tempService;
+    private final TemperatureService temperatureService;
 
-    @PostMapping(TempEndpoints.API_TEMP)
+    @PostMapping("/api/v1/temperature")
     public TemperatureDto addTemp(@RequestParam(value = "degrees", required = false) int degrees) {
-        return tempService.saveTemperature(degrees);
+        return temperatureService.saveTemperature(degrees);
     }
 
-    @GetMapping(TempEndpoints.API_TEMPS)
+    @GetMapping("/api/v1/temperatures")
     public List<TemperatureDto> getTemps() {
-        return tempService.getTemperature();
+        return temperatureService.getTemperature();
     }
 
-    @DeleteMapping(TempEndpoints.API_TEMPS)
+    @DeleteMapping("/api/v1/temperatures")
     public Map<String, Boolean> deleteTemps() {
-        return tempService.deleteTemps();
+        return temperatureService.deleteTemps();
     }
 }

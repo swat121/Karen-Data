@@ -15,7 +15,7 @@ import java.time.LocalTime;
 @NoArgsConstructor
 public class TemperatureDto {
 
-    private double degreesCelsius;
+    private Double degreesCelsius;
 
     private LocalDate date;
 

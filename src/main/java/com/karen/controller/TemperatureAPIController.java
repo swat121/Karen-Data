@@ -15,7 +15,7 @@ public class TemperatureAPIController {
     private final TemperatureService temperatureService;
 
     @PostMapping("/api/v1/temperature")
-    public TemperatureDto addTemp(@RequestParam(value = "degrees", required = false) int degrees) {
+    public TemperatureDto addTemp(@RequestParam(value = "degrees", required = false) Double degrees) {
         return temperatureService.saveTemperature(degrees);
     }
 

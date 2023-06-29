@@ -19,7 +19,7 @@ public class Temperature {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private double degreesCelsius;
+    private Double degreesCelsius;
 
     @Column(columnDefinition = "DATE")
     private LocalDate date;

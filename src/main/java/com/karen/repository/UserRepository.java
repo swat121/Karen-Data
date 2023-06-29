@@ -12,8 +12,10 @@ public interface UserRepository extends JpaRepository<TelegramUser, Long> {
 
     TelegramUser findUserByTelegramId(String telegramId);
 
+    @Transactional
     void deleteUserByName(String name);
 
+    @Transactional
     void deleteUserByTelegramId(String telegramId);
 
     @Modifying

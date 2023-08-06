@@ -1,0 +1,48 @@
+services:
+  postgres:
+    image: postgres:13.3
+    restart: always
+    container_name: postgreSQL
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: home
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d home" ]
+      interval: 30s
+      timeout: 30s
+      retries: 5
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: karen
+      MONGO_INITDB_ROOT_PASSWORD: karen
+    ports:
+      - 27017:27017
+    healthcheck:
+      test: [ "CMD-SHELL", "mongo --eval 'db.runCommand({ ping: 1 })' || echo 1" ]
+      interval: 30s
+      timeout: 30s
+      retries: 5
+    depends_on:
+      postgres:
+        condition: service_healthy
+  discovery:
+    image: swat121/discovery-service:latest
+    restart: always
+    container_name: discovery
+    ports:
+      - 8086:8086
+    environment:
+      - EUREKA_HOST=http://discovery:8086/eureka/
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -sS http://127.0.0.1:8086 || echo 1" ]
+      interval: 30s
+      timeout: 30s
+      retries: 5
+    depends_on:
+      mongo:
+        condition: service_healthy

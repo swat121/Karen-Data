@@ -5,6 +5,8 @@ import com.karen.repository.BoardConfigRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class BoardConfigService {
@@ -16,5 +18,13 @@ public class BoardConfigService {
 
     public BoardConfig getConfigById(String id) {
         return boardConfigRepository.findById(id).orElse(null);
+    }
+
+    public BoardConfig getConfigByBoardName(String name) {
+        return boardConfigRepository.findBoardConfigByName(name);
+    }
+
+    public List<BoardConfig> getConfigs() {
+        return boardConfigRepository.findAll();
     }
 }

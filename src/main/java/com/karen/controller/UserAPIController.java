@@ -30,7 +30,7 @@ public class UserAPIController {
 
     @PostMapping("/api/v1/users")
     public TelegramUserDto setUser(@RequestBody TelegramUser telegramUser) {
-        return userService.addUser(telegramUser);
+        return userService.saveUser(telegramUser);
     }
 
     @PutMapping("/api/v1/user")

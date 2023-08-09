@@ -4,7 +4,6 @@ import com.karen.dto.ClientDto;
 import com.karen.model.Client;
 import com.karen.repository.ClientRepository;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
@@ -27,7 +26,7 @@ public class ClientService {
         return modelMapper.map(clientRepository.findAll(), listType);
     }
 
-    public ClientDto setClient(ClientDto clientDto) {
+    public ClientDto saveClient(ClientDto clientDto) {
         Client client = Client.builder()
                 .ip(clientDto.getIp())
                 .mac(clientDto.getMac())

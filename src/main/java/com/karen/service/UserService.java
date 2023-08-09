@@ -1,7 +1,6 @@
 package com.karen.service;
 
 import com.karen.dto.TelegramUserDto;
-import com.karen.dto.TimerDto;
 import com.karen.model.TelegramUser;
 import com.karen.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -33,7 +32,7 @@ public class UserService {
         return modelMapper.map(userRepository.findUserByTelegramId(id), TelegramUserDto.class);
     }
 
-    public TelegramUserDto addUser(TelegramUser telegramUser) {
+    public TelegramUserDto saveUser(TelegramUser telegramUser) {
         return modelMapper.map(userRepository.save(TelegramUser.builder()
                 .name(telegramUser.getName())
                 .telegramId(telegramUser.getTelegramId())

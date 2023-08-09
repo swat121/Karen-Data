@@ -1,7 +1,6 @@
 package com.karen.controller;
 
 import com.karen.dto.ClientDto;
-import com.karen.model.Client;
 import com.karen.service.ClientService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +25,7 @@ public class ClientAPIController {
 
     @PostMapping("/api/v1/clients")
     public ClientDto setClient(@RequestBody ClientDto clientDto) {
-        return clientService.setClient(clientDto);
+        return clientService.saveClient(clientDto);
     }
 
     @PutMapping("/api/v1/client")

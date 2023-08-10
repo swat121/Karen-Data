@@ -7,6 +7,6 @@ import java.util.List;
 @Data
 public class Device {
     private String name;
-    private List<Data> data;
+    private List<com.karen.model.mongo.Data> data;
 
 }

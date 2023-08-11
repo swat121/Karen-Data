@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BoardConfigRepository extends MongoRepository<BoardConfig, String> {
     BoardConfig findBoardConfigByName(String name);
+
+    void deleteBoardConfigByName(String name);
 }

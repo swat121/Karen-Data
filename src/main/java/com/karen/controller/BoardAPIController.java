@@ -31,4 +31,14 @@ public class BoardAPIController {
     public BoardConfig setBoardConfig(@RequestBody BoardConfig boardConfig) {
         return boardConfigService.saveConfig(boardConfig);
     }
+
+    @DeleteMapping("/api/v1/boards")
+    public void deleteConfigs() {
+        boardConfigService.deleteAllConfigs();
+    }
+
+    @DeleteMapping("/api/v1/boards/{name}")
+    public void deleteConfigByName(@PathVariable String name) {
+        boardConfigService.deleteConfigByName(name);
+    }
 }

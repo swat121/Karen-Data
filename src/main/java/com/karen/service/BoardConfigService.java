@@ -27,4 +27,12 @@ public class BoardConfigService {
     public List<BoardConfig> getConfigs() {
         return boardConfigRepository.findAll();
     }
+
+    public void deleteAllConfigs() {
+        boardConfigRepository.deleteAll();
+    }
+
+    public void deleteConfigByName(String name) {
+        boardConfigRepository.deleteBoardConfigByName(name);
+    }
 }

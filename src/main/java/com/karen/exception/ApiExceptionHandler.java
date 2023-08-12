@@ -16,6 +16,12 @@ public class ApiExceptionHandler {
         return buildErrorResponse("DuplicateKeyException: " + ex.getCause());
     }
 
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    @ExceptionHandler(NullPointerException.class)
+    public ErrorResponse handleNullPointerException(NullPointerException ex) {
+        return buildErrorResponse("NullPointerException: " + ex.getMessage());
+    }
+
     private ErrorResponse buildErrorResponse(String message) {
         return new ErrorResponse(
                 message,

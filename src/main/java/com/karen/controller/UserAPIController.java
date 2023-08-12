@@ -18,13 +18,13 @@ public class UserAPIController {
         return userService.getUsers();
     }
 
-    @GetMapping("/api/v1/users/{name}")
+    @GetMapping("/api/v1/users/name/{name}")
     public TelegramUserDto getUserByName(@PathVariable String name) {
         return userService.getUserByName(name);
     }
 
-    @GetMapping("/api/v1/user")
-    public TelegramUserDto getUserByTelegramId(@RequestParam(value = "id") String id) {
+    @GetMapping("/api/v1/users/id/{id}")
+    public TelegramUserDto getUserByTelegramId(@PathVariable String id) {
         return userService.getUserByTelegramId(id);
     }
 
@@ -43,13 +43,13 @@ public class UserAPIController {
         userService.deleteAllUsers();
     }
 
-    @DeleteMapping("/api/v1/users/{name}")
+    @DeleteMapping("/api/v1/users/name/{name}")
     public void deleteUserByName(@PathVariable String name) {
         userService.deleteUserByName(name);
     }
 
-    @DeleteMapping("/api/v1/user")
-    public void deleteUserByTelegramId(@RequestParam(value = "id") String id) {
+    @DeleteMapping("/api/v1/users/id/{id}")
+    public void deleteUserByTelegramId(@PathVariable String id) {
         userService.deleteUserByTelegramId(id);
     }
 }

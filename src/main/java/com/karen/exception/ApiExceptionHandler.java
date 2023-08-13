@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import javax.persistence.EntityNotFoundException;
 import java.time.ZonedDateTime;
 
 @RestControllerAdvice
@@ -20,6 +21,12 @@ public class ApiExceptionHandler {
     @ExceptionHandler(NullPointerException.class)
     public ErrorResponse handleNullPointerException(NullPointerException ex) {
         return buildErrorResponse("NullPointerException: " + ex.getMessage());
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ErrorResponse handleNotFoundException(EntityNotFoundException ex) {
+        return buildErrorResponse("EntityNotFoundException: " + ex.getMessage());
     }
 
     private ErrorResponse buildErrorResponse(String message) {

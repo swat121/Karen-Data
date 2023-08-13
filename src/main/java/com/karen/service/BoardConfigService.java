@@ -5,6 +5,7 @@ import com.karen.repository.BoardConfigRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
@@ -17,11 +18,11 @@ public class BoardConfigService {
     }
 
     public BoardConfig getConfigById(String id) {
-        return boardConfigRepository.findById(id).orElse(null);
+        return boardConfigRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Board config with id: " + id + " not found"));
     }
 
     public BoardConfig getConfigByBoardName(String name) {
-        return boardConfigRepository.findBoardConfigByName(name);
+        return boardConfigRepository.findBoardConfigByName(name).orElseThrow(() -> new EntityNotFoundException("Board config with name: " + name + " not found"));
     }
 
     public List<BoardConfig> getConfigs() {

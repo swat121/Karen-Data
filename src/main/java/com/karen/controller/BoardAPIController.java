@@ -12,7 +12,7 @@ import java.util.List;
 public class BoardAPIController {
     private final BoardConfigService boardConfigService;
 
-    @GetMapping("/api/v1/board/{name}")
+    @GetMapping("/api/v1/boards/{name}")
     public BoardConfig getConfigByBoardName(@PathVariable String name) {
         return boardConfigService.getConfigByBoardName(name);
     }

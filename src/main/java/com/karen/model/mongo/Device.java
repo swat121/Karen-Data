@@ -13,8 +13,8 @@ import java.util.List;
 public class Device {
 
     @NonNull
-    @JsonProperty("name")
-    private final String name;
+    @JsonProperty("moduleName")
+    private final String moduleName;
     private List<com.karen.model.mongo.Data> data;
 
 }

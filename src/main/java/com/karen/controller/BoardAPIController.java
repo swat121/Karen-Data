@@ -12,7 +12,7 @@ import java.util.List;
 public class BoardAPIController {
     private final BoardConfigService boardConfigService;
 
-    @GetMapping("/api/v1/board/{name}")
+    @GetMapping("/api/v1/boards/{name}")
     public BoardConfig getConfigByBoardName(@PathVariable String name) {
         return boardConfigService.getConfigByBoardName(name);
     }
@@ -30,5 +30,15 @@ public class BoardAPIController {
     @PostMapping("/api/v1/boards")
     public BoardConfig setBoardConfig(@RequestBody BoardConfig boardConfig) {
         return boardConfigService.saveConfig(boardConfig);
+    }
+
+    @DeleteMapping("/api/v1/boards")
+    public void deleteConfigs() {
+        boardConfigService.deleteAllConfigs();
+    }
+
+    @DeleteMapping("/api/v1/boards/{name}")
+    public void deleteConfigByName(@PathVariable String name) {
+        boardConfigService.deleteConfigByName(name);
     }
 }

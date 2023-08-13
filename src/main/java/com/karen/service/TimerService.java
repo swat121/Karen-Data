@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.lang.reflect.Type;
 import java.time.LocalTime;
 import java.time.ZoneId;
@@ -33,7 +34,8 @@ public class TimerService {
     }
 
     public TimerDto findTimer(String micro, String switcher) {
-        return modelMapper.map(timerRepository.findTimerByMicroNameAndSwitcherName(micro, switcher), TimerDto.class);
+        return modelMapper.map(timerRepository.findTimerByMicroNameAndSwitcherName(micro, switcher)
+                .orElseThrow(() -> new EntityNotFoundException("Timer with board: " + micro + " and switcher: " + switcher + " - Not found")), TimerDto.class);
     }
 
     public TimerDto saveTimer(Timer timer) {

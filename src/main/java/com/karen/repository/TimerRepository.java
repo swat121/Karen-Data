@@ -8,13 +8,14 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface TimerRepository extends JpaRepository<Timer, Long> {
 
     List<Timer> findAllByMicroName(String microName);
 
-    Timer findTimerByMicroNameAndSwitcherName(String microName, String switcherName);
+    Optional<Timer> findTimerByMicroNameAndSwitcherName(String microName, String switcherName);
 
     void deleteByMicroName(String microName);
 

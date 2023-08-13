@@ -26,6 +26,6 @@ public class TemperatureAPIController {
 
     @DeleteMapping("/api/v1/temperatures")
     public Map<String, Boolean> deleteTemps() {
-        return temperatureService.deleteTemps();
+        return temperatureService.deleteTemperatures();
     }
 }

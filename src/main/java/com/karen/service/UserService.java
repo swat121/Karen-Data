@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.lang.reflect.Type;
 import java.util.List;
 
@@ -25,11 +26,13 @@ public class UserService {
     }
 
     public TelegramUserDto getUserByName(String name) {
-        return modelMapper.map(userRepository.findUserByName(name), TelegramUserDto.class);
+        return modelMapper.map(userRepository.findUserByName(name)
+                .orElseThrow(() -> new EntityNotFoundException("Telegram user with name: " + name + " - Not found")), TelegramUserDto.class);
     }
 
     public TelegramUserDto getUserByTelegramId(String id) {
-        return modelMapper.map(userRepository.findUserByTelegramId(id), TelegramUserDto.class);
+        return modelMapper.map(userRepository.findUserByTelegramId(id)
+                .orElseThrow(() -> new EntityNotFoundException("Telegram user with id: " + id + " - Not found")), TelegramUserDto.class);
     }
 
     public TelegramUserDto saveUser(TelegramUser telegramUser) {

@@ -6,11 +6,13 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 public interface UserRepository extends JpaRepository<TelegramUser, Long> {
 
-    TelegramUser findUserByName(String name);
+    Optional<TelegramUser> findUserByName(String name);
 
-    TelegramUser findUserByTelegramId(String telegramId);
+    Optional<TelegramUser> findUserByTelegramId(String telegramId);
 
     @Transactional
     void deleteUserByName(String name);

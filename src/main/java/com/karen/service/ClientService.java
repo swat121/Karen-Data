@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.lang.reflect.Type;
 import java.util.*;
 
@@ -19,7 +20,8 @@ public class ClientService {
     private final Type listType = new TypeToken<List<ClientDto>>() {}.getType();
 
     public ClientDto getClientByName(String name) {
-        return modelMapper.map(clientRepository.findClientByName(name), ClientDto.class);
+        return modelMapper.map(clientRepository.findClientByName(name)
+                .orElseThrow(() -> new EntityNotFoundException("Client with name: " + name + " - Not found")), ClientDto.class);
     }
 
     public List<ClientDto> getAllClients() {

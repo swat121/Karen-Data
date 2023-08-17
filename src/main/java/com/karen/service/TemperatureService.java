@@ -59,7 +59,7 @@ public class TemperatureService {
         return modelMapper.map(temperatureRepository.findAll(), listType);
     }
 
-    public Map<String, Boolean> deleteTemps() {
+    public Map<String, Boolean> deleteTemperatures() {
         temperatureRepository.deleteAll();
         Map<String, Boolean> response = new HashMap<>();
         response.put("Delete", Boolean.TRUE);

@@ -22,8 +22,6 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-@EnableAsync
-@EnableScheduling
 @RequiredArgsConstructor
 public class TemperatureService {
     private final ConnectionService connectionService;
@@ -32,9 +30,6 @@ public class TemperatureService {
     private final ModelMapper modelMapper;
 
     private final Type listType = new TypeToken<List<TemperatureDto>>() {}.getType();
-
-    private final long updateTime = 3600000;
-    private final long initTime = 120000;
 
     private double getDegrees() {
         try {
@@ -66,8 +61,6 @@ public class TemperatureService {
         return response;
     }
 
-    @Async
-    @Scheduled(fixedRate = updateTime, initialDelay = initTime)
     public void setDegrees() {
         saveTemperature(getDegrees());
     }

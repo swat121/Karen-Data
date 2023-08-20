@@ -29,6 +29,12 @@ public class ApiExceptionHandler {
         return buildErrorResponse("EntityNotFoundException: " + ex.getMessage());
     }
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ErrorResponse handleBadRequestException(IllegalArgumentException ex) {
+        return buildErrorResponse("IllegalArgumentException: " + ex.getMessage());
+    }
+
     private ErrorResponse buildErrorResponse(String message) {
         return new ErrorResponse(
                 message,

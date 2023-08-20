@@ -13,14 +13,14 @@ public class ScheduleController {
     private final DynamicSchedulerService dynamicSchedulerService;
 
     @PostMapping("/api/v1/schedule/start")
-    public ResponseEntity<String> startTask(@RequestParam long updateTime) {
-        dynamicSchedulerService.startTask(updateTime);
-        return ResponseEntity.ok("Task started");
+    public ResponseEntity<String> startTask(@RequestParam String taskName, @RequestParam long updateTime) {
+        dynamicSchedulerService.startTask(taskName, updateTime).join();
+        return ResponseEntity.ok("Task: " + taskName + " started, wist update time is: " + updateTime);
     }
 
     @PostMapping("/api/v1/schedule/stop")
-    public ResponseEntity<String> stopTask() {
-        dynamicSchedulerService.stopTask();
-        return ResponseEntity.ok("Task stopped");
+    public ResponseEntity<String> stopTask(@RequestParam String taskName) {
+        dynamicSchedulerService.stopTask(taskName);
+        return ResponseEntity.ok("Task: " + taskName + " stopped");
     }
 }

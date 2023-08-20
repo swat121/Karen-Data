@@ -7,8 +7,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
 
 @Service
 @EnableAsync
@@ -18,21 +20,35 @@ public class DynamicSchedulerService {
 
     private final ThreadPoolTaskScheduler threadPoolTaskScheduler;
     private final TemperatureService temperatureService;
-
-    //TODO: Create bean for this
-    private ScheduledFuture<?> scheduledTask;
+    private Map<String, ScheduledFuture<?>> scheduledTasks = new HashMap<>();
 
     @Async
-    public void startTask(long updateTime) {
-        if (scheduledTask != null) {
-            scheduledTask.cancel(true);
-        }
-        scheduledTask = threadPoolTaskScheduler.scheduleWithFixedDelay(temperatureService::setDegrees, updateTime);
+    public synchronized CompletableFuture<Void> startTask(String taskName, long updateTime) {
+        return CompletableFuture.runAsync(() -> {
+            if(scheduledTasks.get(taskName) != null) {
+                stopTask(taskName);
+            }
+            ScheduledFuture<?> futureTask = null;
+
+            switch (taskName) {
+                case "temperatureTask":
+                    futureTask = threadPoolTaskScheduler.scheduleWithFixedDelay(temperatureService::setDegrees, updateTime);
+                    break;
+                default:
+                    throw new IllegalArgumentException("Unknown task name: " + taskName);
+            }
+
+            scheduledTasks.put(taskName, futureTask);
+        });
     }
 
-    public void stopTask() {
-        if (scheduledTask != null) {
-            scheduledTask.cancel(true);
+    public synchronized void stopTask(String taskName) {
+        ScheduledFuture<?> existingTask = scheduledTasks.get(taskName);
+        if (existingTask != null) {
+            existingTask.cancel(true);
+            scheduledTasks.remove(taskName);
+        } else {
+            throw new IllegalArgumentException("Unknown task name: " + taskName);
         }
     }
 }

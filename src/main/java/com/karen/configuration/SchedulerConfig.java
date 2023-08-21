@@ -10,7 +10,6 @@ public class SchedulerConfig {
     @Bean
     public ThreadPoolTaskScheduler threadPoolTaskScheduler() {
         ThreadPoolTaskScheduler threadPoolTaskScheduler = new ThreadPoolTaskScheduler();
-        //TODO: what is PoolSize
         threadPoolTaskScheduler.setPoolSize(5);
         return threadPoolTaskScheduler;
     }

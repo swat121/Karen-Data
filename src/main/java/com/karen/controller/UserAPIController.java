@@ -1,7 +1,7 @@
 package com.karen.controller;
 
 import com.karen.dto.TelegramUserDto;
-import com.karen.model.TelegramUser;
+import com.karen.model.postgres.TelegramUser;
 import com.karen.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;

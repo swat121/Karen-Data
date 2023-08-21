@@ -1,6 +1,6 @@
 package com.karen.repository;
 
-import com.karen.model.Client;
+import com.karen.model.postgres.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

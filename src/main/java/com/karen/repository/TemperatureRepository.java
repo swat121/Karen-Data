@@ -1,6 +1,6 @@
 package com.karen.repository;
 
-import com.karen.model.Temperature;
+import com.karen.model.postgres.Temperature;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

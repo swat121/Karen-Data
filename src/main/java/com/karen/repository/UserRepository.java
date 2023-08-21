@@ -1,6 +1,6 @@
 package com.karen.repository;
 
-import com.karen.model.TelegramUser;
+import com.karen.model.postgres.TelegramUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

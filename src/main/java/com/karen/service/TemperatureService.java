@@ -1,15 +1,11 @@
 package com.karen.service;
 
 import com.karen.dto.TemperatureDto;
-import com.karen.model.Temperature;
+import com.karen.model.postgres.Temperature;
 import com.karen.repository.TemperatureRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.EnableAsync;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.ResourceAccessException;
 

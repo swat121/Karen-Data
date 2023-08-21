@@ -1,7 +1,7 @@
 package com.karen.service;
 
 import com.karen.dto.TelegramUserDto;
-import com.karen.model.TelegramUser;
+import com.karen.model.postgres.TelegramUser;
 import com.karen.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;

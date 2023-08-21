@@ -1,7 +1,7 @@
 package com.karen.service;
 
 import com.karen.dto.ClientDto;
-import com.karen.model.Client;
+import com.karen.model.postgres.Client;
 import com.karen.repository.ClientRepository;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;

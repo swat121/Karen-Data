@@ -1,4 +1,4 @@
-package com.karen.model;
+package com.karen.model.postgres;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,12 +15,12 @@ import javax.persistence.Id;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Client {
+public class TelegramUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String ip;
+
+    private String telegramId;
+
     private String name;
-    private String mac;
-    private String ssid;
 }

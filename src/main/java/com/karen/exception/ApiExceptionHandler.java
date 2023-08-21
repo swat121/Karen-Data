@@ -14,7 +14,7 @@ public class ApiExceptionHandler {
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
     @ExceptionHandler(DuplicateKeyException.class)
     public ErrorResponse handleDuplicateKeyException(DuplicateKeyException ex) {
-        return buildErrorResponse("DuplicateKeyException: " + ex.getCause());
+        return buildErrorResponse("DuplicateKeyException: " + ex.getMessage());
     }
 
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)

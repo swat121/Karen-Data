@@ -1,8 +1,7 @@
 package com.karen.controller;
 
 import com.karen.dto.TimerDto;
-import com.karen.model.Client;
-import com.karen.model.Timer;
+import com.karen.model.postgres.Timer;
 import com.karen.service.TimerService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;

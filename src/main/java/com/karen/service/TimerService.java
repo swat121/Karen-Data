@@ -1,8 +1,7 @@
 package com.karen.service;
 
-import com.karen.dto.TemperatureDto;
 import com.karen.dto.TimerDto;
-import com.karen.model.Timer;
+import com.karen.model.postgres.Timer;
 import com.karen.repository.TimerRepository;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;

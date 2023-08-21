@@ -1,4 +1,4 @@
-package com.karen.model;
+package com.karen.model.postgres;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Data
@@ -13,19 +14,16 @@ import java.time.LocalTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Timer {
+public class Temperature {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String microName;
+    private Double degreesCelsius;
 
-    private String switcherName;
-
-    private String status;
+    @Column(columnDefinition = "DATE")
+    private LocalDate date;
 
     @Column(columnDefinition = "TIME")
-    private LocalTime timeOff;
-
-    private int timerTime;
+    private LocalTime time;
 }

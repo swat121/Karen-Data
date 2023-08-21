@@ -1,16 +1,19 @@
 package com.karen.service;
 
 import com.karen.dto.TelegramUserDto;
-import com.karen.model.TelegramUser;
+import com.karen.model.postgres.TelegramUser;
 import com.karen.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Function;
 
 @Service
 @AllArgsConstructor
@@ -36,6 +39,9 @@ public class UserService {
     }
 
     public TelegramUserDto saveUser(TelegramUser telegramUser) {
+        checkForDuplicate("telegramId", telegramUser.getTelegramId(), userRepository::findUserByTelegramId);
+        checkForDuplicate("name", telegramUser.getName(), userRepository::findUserByName);
+
         return modelMapper.map(userRepository.save(TelegramUser.builder()
                 .name(telegramUser.getName())
                 .telegramId(telegramUser.getTelegramId())
@@ -56,5 +62,11 @@ public class UserService {
 
     public void deleteUserByTelegramId(String id) {
         userRepository.deleteUserByTelegramId(id);
+    }
+
+    private void checkForDuplicate(String field, String value, Function<String, Optional<TelegramUser>> finder) {
+        if (finder.apply(value).isPresent()) {
+            throw new DuplicateKeyException("User with " + field + ": " + value + " already exists");
+        }
     }
 }

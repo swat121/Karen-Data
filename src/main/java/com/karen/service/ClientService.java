@@ -6,11 +6,13 @@ import com.karen.repository.ClientRepository;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.lang.reflect.Type;
 import java.util.*;
+import java.util.function.Function;
 
 @Service
 @AllArgsConstructor
@@ -29,6 +31,10 @@ public class ClientService {
     }
 
     public ClientDto saveClient(ClientDto clientDto) {
+        checkForDuplicate("name", clientDto.getName(), clientRepository::findClientByName);
+        checkForDuplicate("ip", clientDto.getIp(), clientRepository::findClientByIp);
+        checkForDuplicate("mac", clientDto.getMac(), clientRepository::findClientByMac);
+
         Client client = Client.builder()
                 .ip(clientDto.getIp())
                 .mac(clientDto.getMac())
@@ -44,5 +50,11 @@ public class ClientService {
 
     public void deleteAllClients() {
         clientRepository.deleteAll();
+    }
+
+    private void checkForDuplicate(String field, String value, Function<String, Optional<Client>> finder) {
+        if (finder.apply(value).isPresent()) {
+            throw new DuplicateKeyException("Client with " + field + ": " + value + " already exists");
+        }
     }
 }

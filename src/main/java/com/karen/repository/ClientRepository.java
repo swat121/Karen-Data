@@ -13,6 +13,8 @@ import java.util.Optional;
 public interface ClientRepository extends JpaRepository<Client, Long> {
 
     Optional<Client> findClientByName(String name);
+    Optional<Client> findClientByMac(String mac);
+    Optional<Client> findClientByIp(String ip);
 
     @Modifying
     @Transactional

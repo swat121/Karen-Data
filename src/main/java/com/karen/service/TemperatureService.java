@@ -27,14 +27,6 @@ public class TemperatureService {
 
     private final Type listType = new TypeToken<List<TemperatureDto>>() {}.getType();
 
-    private double getDegrees() {
-        try {
-            return Double.parseDouble(connectionService.getResponseFromService("karen", "/patric/sensor/temperature", String.class));
-        } catch (ResourceAccessException | IllegalStateException e) {
-            return -1000;
-        }
-    }
-
     public TemperatureDto saveTemperature(double degrees) {
         LocalDate myDate = LocalDate.now(ZoneId.of("Europe/Kiev"));
         LocalTime myTime = LocalTime.now(ZoneId.of("Europe/Kiev"));
@@ -55,9 +47,5 @@ public class TemperatureService {
         Map<String, Boolean> response = new HashMap<>();
         response.put("Delete", Boolean.TRUE);
         return response;
-    }
-
-    public void setDegrees() {
-        saveTemperature(getDegrees());
     }
 }

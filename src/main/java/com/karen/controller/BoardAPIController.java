@@ -16,41 +16,40 @@ import java.util.List;
 public class BoardAPIController {
     private final BoardConfigService boardConfigService;
     private static final Logger LOG = LogManager.getRootLogger();
-    private static final Marker IMPORTANT_MARKER = MarkerFactory.getMarker("IMPORTANT");
 
     @GetMapping("/api/v1/boards/{name}")
     public BoardConfig getConfigByBoardName(@PathVariable String name) {
-        LOG.info("GET: board config be name = " + name, IMPORTANT_MARKER);
+        LOG.info("Received GET request on /api/v1/boards/{}. Fetching board config by name.", name);
         return boardConfigService.getConfigByBoardName(name);
     }
 
     @GetMapping("/api/v1/boards")
     public List<BoardConfig> getBoardConfigs() {
-        LOG.info("GET: list of board configs");
+        LOG.info("Received GET request on /api/v1/boards. Fetching list of board configs.");
         return boardConfigService.getConfigs();
     }
 
     @GetMapping("/api/v1/board")
     public BoardConfig getConfigById(@RequestParam(value = "id") String id) {
-        LOG.info("GET: board config by id = " + id);
+        LOG.info("Received GET request on /api/v1/board with id={}. Fetching board config by id.", id);
         return boardConfigService.getConfigById(id);
     }
 
     @PostMapping("/api/v1/boards")
     public BoardConfig setBoardConfig(@RequestBody BoardConfig boardConfig) {
-        LOG.info("POST: board config = " + boardConfig);
+        LOG.info("Received POST request on /api/v1/boards with board config data={}.", boardConfig);
         return boardConfigService.saveConfig(boardConfig);
     }
 
     @DeleteMapping("/api/v1/boards")
     public void deleteConfigs() {
-        LOG.info("DELETE: all board configs");
+        LOG.info("Received DELETE request on /api/v1/boards. Deleting all board configs.");
         boardConfigService.deleteAllConfigs();
     }
 
     @DeleteMapping("/api/v1/boards/{name}")
     public void deleteConfigByName(@PathVariable String name) {
-        LOG.info("DELETE: board config by name = " + name);
+        LOG.info("Received DELETE request on /api/v1/boards/{}. Deleting board config by name.", name);
         boardConfigService.deleteConfigByName(name);
     }
 }

@@ -12,7 +12,7 @@ public class HealthController {
 
     @GetMapping("/api/v1/ping")
     public ResponseEntity<String> ping() {
-        LOG.info("GET: ping");
+        LOG.info("Received GET request on /api/v1/ping. Checking service availability.");
         return ResponseEntity.ok("pong");
     }
 }

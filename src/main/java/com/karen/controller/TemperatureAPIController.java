@@ -19,19 +19,19 @@ public class TemperatureAPIController {
 
     @PostMapping("/api/v1/temperature")
     public TemperatureDto setTemp(@RequestParam(value = "degrees", required = false) Double degrees) {
-        LOG.info("POST: temperature = " + degrees);
+        LOG.info("Received POST request on /api/v1/temperature with degrees={}.", degrees);
         return temperatureService.saveTemperature(degrees);
     }
 
     @GetMapping("/api/v1/temperatures")
     public List<TemperatureDto> getTemps() {
-        LOG.info("GET: temperatures");
+        LOG.info("Received GET request on /api/v1/temperatures. Fetching all temperature records.");
         return temperatureService.getTemperature();
     }
 
     @DeleteMapping("/api/v1/temperatures")
     public Map<String, Boolean> deleteTemps() {
-        LOG.info("DELETE: temperatures");
+        LOG.info("Received DELETE request on /api/v1/temperatures. Deleting all temperature records.");
         return temperatureService.deleteTemperatures();
     }
 }

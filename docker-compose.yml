@@ -61,7 +61,7 @@ services:
       Password: postgres
       MONGO_Host: mongo
       MONGO_Port: 27017
-      MONGO_Database: board-config
+      MONGO_Database: home
       MONGO_User: karen
       MONGO_Pass: karen
     depends_on:

@@ -22,13 +22,13 @@ public class UserAPIController {
         return userService.getUsers();
     }
 
-    @GetMapping("/api/v1/users/name/{name}")
+    @GetMapping("/api/v1/users/by-name/{name}")
     public TelegramUserDto getUserByName(@PathVariable String name) {
         LOG.info("Received GET request on /api/v1/users/name/{}. Fetching user by name.", name);
         return userService.getUserByName(name);
     }
 
-    @GetMapping("/api/v1/users/id/{id}")
+    @GetMapping("/api/v1/users/by-id/{id}")
     public TelegramUserDto getUserByTelegramId(@PathVariable String id) {
         LOG.info("Received GET request on /api/v1/users/id/{}. Fetching user by Telegram ID.", id);
         return userService.getUserByTelegramId(id);
@@ -52,13 +52,13 @@ public class UserAPIController {
         userService.deleteAllUsers();
     }
 
-    @DeleteMapping("/api/v1/users/name/{name}")
+    @DeleteMapping("/api/v1/users/by-name/{name}")
     public void deleteUserByName(@PathVariable String name) {
         LOG.info("Received DELETE request on /api/v1/users/name/{}. Deleting user by name.", name);
         userService.deleteUserByName(name);
     }
 
-    @DeleteMapping("/api/v1/users/id/{id}")
+    @DeleteMapping("/api/v1/users/by-id/{id}")
     public void deleteUserByTelegramId(@PathVariable String id) {
         LOG.info("Received DELETE request on /api/v1/users/id/{}. Deleting user by Telegram ID.", id);
         userService.deleteUserByTelegramId(id);

@@ -17,28 +17,28 @@ public class ApiExceptionHandler {
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
     @ExceptionHandler(DuplicateKeyException.class)
     public ErrorResponse handleDuplicateKeyException(DuplicateKeyException ex) {
-        LOG.error("DuplicateKeyException occurred: {}", ex.getMessage(), ex);
+        LOG.error("DuplicateKeyException occurred: {}", ex.getMessage());
         return buildErrorResponse("DuplicateKeyException: " + ex.getMessage());
     }
 
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
     @ExceptionHandler(NullPointerException.class)
     public ErrorResponse handleNullPointerException(NullPointerException ex) {
-        LOG.error("NullPointerException occurred: {}", ex.getMessage(), ex);
+        LOG.error("NullPointerException occurred: {}", ex.getMessage());
         return buildErrorResponse("NullPointerException: " + ex.getMessage());
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(EntityNotFoundException.class)
     public ErrorResponse handleNotFoundException(EntityNotFoundException ex) {
-        LOG.error("EntityNotFoundException occurred: {}", ex.getMessage(), ex);
+        LOG.error("EntityNotFoundException occurred: {}", ex.getMessage());
         return buildErrorResponse("EntityNotFoundException: " + ex.getMessage());
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(IllegalArgumentException.class)
     public ErrorResponse handleBadRequestException(IllegalArgumentException ex) {
-        LOG.error("IllegalArgumentException occurred: {}", ex.getMessage(), ex);
+        LOG.error("IllegalArgumentException occurred: {}", ex.getMessage());
         return buildErrorResponse("IllegalArgumentException: " + ex.getMessage());
     }
 

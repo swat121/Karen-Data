@@ -46,3 +46,24 @@ services:
     depends_on:
       mongo:
         condition: service_healthy
+  karen-data:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8081:8081
+    environment:
+      EUREKA_HOST: "http://discovery:8086/eureka/"
+      Host: postgres
+      Port: 5432
+      Database: home
+      User: postgres
+      Password: postgres
+      MONGO_Host: mongo
+      MONGO_Port: 27017
+      MONGO_Database: home
+      MONGO_User: karen
+      MONGO_Pass: karen
+    depends_on:
+      discovery:
+        condition: service_healthy

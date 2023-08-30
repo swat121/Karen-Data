@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-public class UserAPIController {
+public class UserController {
     private final UserService userService;
     private static final Logger LOG = LogManager.getRootLogger();
 

@@ -5,15 +5,13 @@ import com.karen.service.BoardConfigService;
 import lombok.AllArgsConstructor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.slf4j.Marker;
-import org.slf4j.MarkerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @AllArgsConstructor
-public class BoardAPIController {
+public class BoardController {
     private final BoardConfigService boardConfigService;
     private static final Logger LOG = LogManager.getRootLogger();
 

@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-public class ClientAPIController {
+public class ClientController {
 
     private final ClientService clientService;
     private static final Logger LOG = LogManager.getRootLogger();
@@ -34,7 +34,7 @@ public class ClientAPIController {
         return clientService.saveClient(clientDto);
     }
 
-    @PutMapping("/api/v1/client")
+    @PutMapping("/api/v1/client/update")
     public int updateClient(@RequestBody ClientDto client) {
         LOG.info("Received PUT request on /api/v1/client with client update data={}.", client);
         return clientService.updateClient(client);

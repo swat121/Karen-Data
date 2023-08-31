@@ -9,9 +9,13 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class TelegramUserDto {
+public class UserDto {
 
     private String telegramId;
 
     private String name;
+
+    private boolean isNotify;
+
+    private String role;
 }

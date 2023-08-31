@@ -1,6 +1,6 @@
 package com.karen.repository;
 
-import com.karen.model.postgres.TelegramUser;
+import com.karen.model.postgres.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -8,11 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-public interface UserRepository extends JpaRepository<TelegramUser, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
-    Optional<TelegramUser> findUserByName(String name);
+    Optional<User> findUserByName(String name);
 
-    Optional<TelegramUser> findUserByTelegramId(String telegramId);
+    Optional<User> findUserByTelegramId(String telegramId);
 
     @Transactional
     void deleteUserByName(String name);
@@ -22,6 +22,6 @@ public interface UserRepository extends JpaRepository<TelegramUser, Long> {
 
     @Modifying
     @Transactional
-    @Query(value = "update TelegramUser u set u.telegramId = ?1 where u.name = ?2")
+    @Query(value = "update User u set u.telegramId = ?1 where u.name = ?2")
     int updateUserInfo(String ip, String name);
 }

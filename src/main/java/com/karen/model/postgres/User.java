@@ -15,7 +15,7 @@ import javax.persistence.Id;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class TelegramUser {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,4 +23,8 @@ public class TelegramUser {
     private String telegramId;
 
     private String name;
+
+    private boolean isNotify;
+
+    private String role;
 }

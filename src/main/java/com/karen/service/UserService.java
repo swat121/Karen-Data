@@ -1,7 +1,7 @@
 package com.karen.service;
 
-import com.karen.dto.TelegramUserDto;
-import com.karen.model.postgres.TelegramUser;
+import com.karen.dto.UserDto;
+import com.karen.model.postgres.User;
 import com.karen.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -22,33 +22,33 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    private final Type listType = new TypeToken<List<TelegramUserDto>>() {}.getType();
+    private final Type listType = new TypeToken<List<UserDto>>() {}.getType();
 
-    public List<TelegramUserDto> getUsers() {
+    public List<UserDto> getUsers() {
         return modelMapper.map(userRepository.findAll(), listType);
     }
 
-    public TelegramUserDto getUserByName(String name) {
+    public UserDto getUserByName(String name) {
         return modelMapper.map(userRepository.findUserByName(name)
-                .orElseThrow(() -> new EntityNotFoundException("Telegram user with name: " + name + " - Not found")), TelegramUserDto.class);
+                .orElseThrow(() -> new EntityNotFoundException("Telegram user with name: " + name + " - Not found")), UserDto.class);
     }
 
-    public TelegramUserDto getUserByTelegramId(String id) {
+    public UserDto getUserByTelegramId(String id) {
         return modelMapper.map(userRepository.findUserByTelegramId(id)
-                .orElseThrow(() -> new EntityNotFoundException("Telegram user with id: " + id + " - Not found")), TelegramUserDto.class);
+                .orElseThrow(() -> new EntityNotFoundException("Telegram user with id: " + id + " - Not found")), UserDto.class);
     }
 
-    public TelegramUserDto saveUser(TelegramUser telegramUser) {
-        checkForDuplicate("telegramId", telegramUser.getTelegramId(), userRepository::findUserByTelegramId);
-        checkForDuplicate("name", telegramUser.getName(), userRepository::findUserByName);
+    public UserDto saveUser(User user) {
+        checkForDuplicate("telegramId", user.getTelegramId(), userRepository::findUserByTelegramId);
+        checkForDuplicate("name", user.getName(), userRepository::findUserByName);
 
-        return modelMapper.map(userRepository.save(TelegramUser.builder()
-                .name(telegramUser.getName())
-                .telegramId(telegramUser.getTelegramId())
-                .build()), TelegramUserDto.class);
+        return modelMapper.map(userRepository.save(User.builder()
+                .name(user.getName())
+                .telegramId(user.getTelegramId())
+                .build()), UserDto.class);
     }
 
-    public int updateUser(TelegramUserDto telegramUser) {
+    public int updateUser(UserDto telegramUser) {
         return userRepository.updateUserInfo(telegramUser.getTelegramId(), telegramUser.getName());
     }
 
@@ -64,7 +64,7 @@ public class UserService {
         userRepository.deleteUserByTelegramId(id);
     }
 
-    private void checkForDuplicate(String field, String value, Function<String, Optional<TelegramUser>> finder) {
+    private void checkForDuplicate(String field, String value, Function<String, Optional<User>> finder) {
         if (finder.apply(value).isPresent()) {
             throw new DuplicateKeyException("User with " + field + ": " + value + " already exists");
         }

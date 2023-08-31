@@ -1,7 +1,7 @@
 package com.karen.controller;
 
-import com.karen.dto.TelegramUserDto;
-import com.karen.model.postgres.TelegramUser;
+import com.karen.dto.UserDto;
+import com.karen.model.postgres.User;
 import com.karen.service.UserService;
 import lombok.AllArgsConstructor;
 import org.apache.logging.log4j.LogManager;
@@ -17,33 +17,33 @@ public class UserController {
     private static final Logger LOG = LogManager.getRootLogger();
 
     @GetMapping("/api/v1/users")
-    public List<TelegramUserDto> getUsers() {
+    public List<UserDto> getUsers() {
         LOG.info("Received GET request on /api/v1/users. Fetching all users.");
         return userService.getUsers();
     }
 
     @GetMapping("/api/v1/users/by-name/{name}")
-    public TelegramUserDto getUserByName(@PathVariable String name) {
+    public UserDto getUserByName(@PathVariable String name) {
         LOG.info("Received GET request on /api/v1/users/name/{}. Fetching user by name.", name);
         return userService.getUserByName(name);
     }
 
     @GetMapping("/api/v1/users/by-id/{id}")
-    public TelegramUserDto getUserByTelegramId(@PathVariable String id) {
+    public UserDto getUserByTelegramId(@PathVariable String id) {
         LOG.info("Received GET request on /api/v1/users/id/{}. Fetching user by Telegram ID.", id);
         return userService.getUserByTelegramId(id);
     }
 
     @PostMapping("/api/v1/users")
-    public TelegramUserDto setUser(@RequestBody TelegramUser telegramUser) {
-        LOG.info("Received POST request on /api/v1/users with user data={}.", telegramUser);
-        return userService.saveUser(telegramUser);
+    public UserDto setUser(@RequestBody User user) {
+        LOG.info("Received POST request on /api/v1/users with user data={}.", user);
+        return userService.saveUser(user);
     }
 
     @PutMapping("/api/v1/user")
-    public int updateUser(@RequestBody TelegramUserDto telegramUser) {
-        LOG.info("Received PUT request on /api/v1/user with user update data={}.", telegramUser);
-        return userService.updateUser(telegramUser);
+    public int updateUser(@RequestBody UserDto userDto) {
+        LOG.info("Received PUT request on /api/v1/user with user update data={}.", userDto);
+        return userService.updateUser(userDto);
     }
 
     @DeleteMapping("/api/v1/users")

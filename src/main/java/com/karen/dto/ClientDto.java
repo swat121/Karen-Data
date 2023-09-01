@@ -12,7 +12,10 @@ import lombok.NoArgsConstructor;
 public class ClientDto {
 
     private String ip;
+
     private String name;
+
     private String mac;
+
     private String ssid;
 }

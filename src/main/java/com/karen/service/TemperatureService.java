@@ -25,7 +25,8 @@ public class TemperatureService {
 
     private final ModelMapper modelMapper;
 
-    private final Type listType = new TypeToken<List<TemperatureDto>>() {}.getType();
+    private final Type listType = new TypeToken<List<TemperatureDto>>() {
+    }.getType();
 
     public TemperatureDto saveTemperature(double degrees) {
         LocalDate myDate = LocalDate.now(ZoneId.of("Europe/Kiev"));

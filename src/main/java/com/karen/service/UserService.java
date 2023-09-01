@@ -22,7 +22,8 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    private final Type listType = new TypeToken<List<UserDto>>() {}.getType();
+    private final Type listType = new TypeToken<List<UserDto>>() {
+    }.getType();
 
     public List<UserDto> getUsers() {
         return modelMapper.map(userRepository.findAll(), listType);

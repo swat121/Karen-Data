@@ -1,7 +1,6 @@
 package com.karen.service;
 
 import com.karen.dto.BoardConfigDTO;
-import com.karen.dto.UserDto;
 import com.karen.model.mongo.BoardConfig;
 import com.karen.repository.BoardConfigRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +21,8 @@ public class BoardConfigService {
     private final ModelMapper modelMapper;
 
     private final BoardConfigRepository boardConfigRepository;
-    private final Type listType = new TypeToken<List<BoardConfigDTO>>() {}.getType();
+    private final Type listType = new TypeToken<List<BoardConfigDTO>>() {
+    }.getType();
 
     public BoardConfigDTO saveConfig(BoardConfig boardConfig) {
         checkForDuplicate("name", boardConfig.getName(), boardConfigRepository::findBoardConfigByName);

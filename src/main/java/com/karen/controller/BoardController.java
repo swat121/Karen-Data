@@ -1,5 +1,6 @@
 package com.karen.controller;
 
+import com.karen.dto.BoardConfigDTO;
 import com.karen.model.mongo.BoardConfig;
 import com.karen.service.BoardConfigService;
 import lombok.AllArgsConstructor;
@@ -16,25 +17,19 @@ public class BoardController {
     private static final Logger LOG = LogManager.getRootLogger();
 
     @GetMapping("/api/v1/boards/{name}")
-    public BoardConfig getConfigByBoardName(@PathVariable String name) {
+    public BoardConfigDTO getConfigByBoardName(@PathVariable String name) {
         LOG.info("Received GET request on /api/v1/boards/{}. Fetching board config by name.", name);
         return boardConfigService.getConfigByBoardName(name);
     }
 
     @GetMapping("/api/v1/boards")
-    public List<BoardConfig> getBoardConfigs() {
+    public List<BoardConfigDTO> getBoardConfigs() {
         LOG.info("Received GET request on /api/v1/boards. Fetching list of board configs.");
         return boardConfigService.getConfigs();
     }
 
-    @GetMapping("/api/v1/board")
-    public BoardConfig getConfigById(@RequestParam(value = "id") String id) {
-        LOG.info("Received GET request on /api/v1/board with id={}. Fetching board config by id.", id);
-        return boardConfigService.getConfigById(id);
-    }
-
     @PostMapping("/api/v1/boards")
-    public BoardConfig setBoardConfig(@RequestBody BoardConfig boardConfig) {
+    public BoardConfigDTO setBoardConfig(@RequestBody BoardConfig boardConfig) {
         LOG.info("Received POST request on /api/v1/boards with board config data={}.", boardConfig);
         return boardConfigService.saveConfig(boardConfig);
     }

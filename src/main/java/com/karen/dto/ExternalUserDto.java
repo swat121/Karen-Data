@@ -9,13 +9,13 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDto {
+public class ExternalUserDto {
 
     private String telegramId;
 
     private String name;
 
-    private boolean isNotify;
+    private Boolean isNotify;
 
     private String role;
 }

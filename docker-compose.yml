@@ -38,11 +38,14 @@ services:
     container_name: mongo-express
     restart: always
     ports:
-      - 8088:8088
+      - 8081:8081
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: karen
       ME_CONFIG_MONGODB_ADMINPASSWORD: karen
       ME_CONFIG_MONGODB_SERVER: mongo
+    depends_on:
+      mongo:
+        condition: service_healthy
 
   discovery:
     image: swat121/discovery-service:latest
@@ -65,8 +68,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: karen-data
     ports:
-      - 8081:8081
+      - 8085:8085
     environment:
       EUREKA_HOST: "http://discovery:8086/eureka/"
       Host: postgres

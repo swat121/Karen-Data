@@ -12,7 +12,7 @@ import java.util.Map;
 
 @RestController
 @AllArgsConstructor
-public class TemperatureAPIController {
+public class TemperatureController {
 
     private final TemperatureService temperatureService;
     private static final Logger LOG = LogManager.getRootLogger();

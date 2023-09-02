@@ -15,6 +15,7 @@ public class Device {
     @NonNull
     @JsonProperty("moduleName")
     private final String moduleName;
+
     private List<com.karen.model.mongo.Data> data;
 
 }

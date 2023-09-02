@@ -19,7 +19,8 @@ import java.util.function.Function;
 public class ClientService {
     private final ClientRepository clientRepository;
     private final ModelMapper modelMapper;
-    private final Type listType = new TypeToken<List<ClientDto>>() {}.getType();
+    private final Type listType = new TypeToken<List<ClientDto>>() {
+    }.getType();
 
     public ClientDto getClientByName(String name) {
         return modelMapper.map(clientRepository.findClientByName(name)

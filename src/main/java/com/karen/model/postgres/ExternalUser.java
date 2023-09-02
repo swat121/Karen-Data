@@ -1,9 +1,7 @@
 package com.karen.model.postgres;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,12 +13,20 @@ import javax.persistence.Id;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class TelegramUser {
+public class ExternalUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NonNull
+    @JsonProperty("telegramId")
     private String telegramId;
 
+    @NonNull
+    @JsonProperty("name")
     private String name;
+
+    private Boolean isNotify;
+
+    private String role;
 }

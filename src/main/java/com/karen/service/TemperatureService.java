@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.ResourceAccessException;
 
 import java.lang.reflect.Type;
 import java.time.LocalDate;
@@ -20,12 +19,12 @@ import java.util.Map;
 @Service
 @RequiredArgsConstructor
 public class TemperatureService {
-    private final ConnectionService connectionService;
     private final TemperatureRepository temperatureRepository;
 
     private final ModelMapper modelMapper;
 
-    private final Type listType = new TypeToken<List<TemperatureDto>>() {}.getType();
+    private final Type listType = new TypeToken<List<TemperatureDto>>() {
+    }.getType();
 
     public TemperatureDto saveTemperature(double degrees) {
         LocalDate myDate = LocalDate.now(ZoneId.of("Europe/Kiev"));

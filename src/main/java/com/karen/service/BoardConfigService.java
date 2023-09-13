@@ -1,6 +1,6 @@
 package com.karen.service;
 
-import com.karen.dto.BoardConfigDTO;
+import com.karen.dto.BoardConfigDto;
 import com.karen.model.mongo.BoardConfig;
 import com.karen.repository.BoardConfigRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,20 +21,20 @@ public class BoardConfigService {
     private final ModelMapper modelMapper;
 
     private final BoardConfigRepository boardConfigRepository;
-    private final Type listType = new TypeToken<List<BoardConfigDTO>>() {
+    private final Type listType = new TypeToken<List<BoardConfigDto>>() {
     }.getType();
 
-    public BoardConfigDTO saveConfig(BoardConfig boardConfig) {
+    public BoardConfigDto saveConfig(BoardConfig boardConfig) {
         checkForDuplicate("name", boardConfig.getName(), boardConfigRepository::findBoardConfigByName);
-        return modelMapper.map(boardConfigRepository.save(boardConfig), BoardConfigDTO.class);
+        return modelMapper.map(boardConfigRepository.save(boardConfig), BoardConfigDto.class);
     }
 
-    public BoardConfigDTO getConfigByBoardName(String name) {
+    public BoardConfigDto getConfigByBoardName(String name) {
         return modelMapper.map(boardConfigRepository.findBoardConfigByName(name)
-                .orElseThrow(() -> new EntityNotFoundException("Board config with name: " + name + " not found")), BoardConfigDTO.class);
+                .orElseThrow(() -> new EntityNotFoundException("Board config with name: " + name + " not found")), BoardConfigDto.class);
     }
 
-    public List<BoardConfigDTO> getConfigs() {
+    public List<BoardConfigDto> getConfigs() {
         return modelMapper.map(boardConfigRepository.findAll(), listType);
     }
 

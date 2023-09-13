@@ -4,7 +4,7 @@ import com.karen.model.mongo.Setting;
 import lombok.Data;
 
 @Data
-public class BoardConfigDTO {
+public class BoardConfigDto {
     private String name;
 
     private Setting setting;

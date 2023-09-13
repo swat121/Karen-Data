@@ -1,4 +1,4 @@
-package com.karen.dto;
+package com.karen.dto.sensor;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,12 +10,12 @@ import java.time.LocalTime;
 
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class TemperatureDto {
-
-    private Double degreesCelsius;
-
+@AllArgsConstructor
+public class SensorResponseDto {
+    private String name;
+    private String sensorId;
+    private String data;
     private LocalDate date;
 
     private LocalTime time;

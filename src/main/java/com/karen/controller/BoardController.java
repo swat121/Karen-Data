@@ -18,31 +18,26 @@ public class BoardController {
 
     @GetMapping("/api/v1/boards/{name}")
     public BoardConfigDto getConfigByBoardName(@PathVariable String name) {
-        LOG.info("Received GET request on /api/v1/boards/{}. Fetching board config by name.", name);
         return boardConfigService.getConfigByBoardName(name);
     }
 
     @GetMapping("/api/v1/boards")
     public List<BoardConfigDto> getBoardConfigs() {
-        LOG.info("Received GET request on /api/v1/boards. Fetching list of board configs.");
         return boardConfigService.getConfigs();
     }
 
     @PostMapping("/api/v1/boards")
     public BoardConfigDto setBoardConfig(@RequestBody BoardConfig boardConfig) {
-        LOG.info("Received POST request on /api/v1/boards with board config data={}.", boardConfig);
         return boardConfigService.saveConfig(boardConfig);
     }
 
     @DeleteMapping("/api/v1/boards")
     public void deleteConfigs() {
-        LOG.info("Received DELETE request on /api/v1/boards. Deleting all board configs.");
         boardConfigService.deleteAllConfigs();
     }
 
     @DeleteMapping("/api/v1/boards/{name}")
     public void deleteConfigByName(@PathVariable String name) {
-        LOG.info("Received DELETE request on /api/v1/boards/{}. Deleting board config by name.", name);
         boardConfigService.deleteConfigByName(name);
     }
 }

@@ -20,19 +20,16 @@ public class SensorController {
 
     @PostMapping("/api/v1/sensors")
     public SensorResponseDto setSensorData(@RequestBody SensorRequestDto request) {
-        LOG.info("Received POST request on /api/v1/sensors with request={}.", request);
         return sensorService.saveSensorData(request);
     }
 
     @GetMapping("/api/v1/sensors")
     public List<SensorResponseDto> getSensorsData() {
-        LOG.info("Received GET request on /api/v1/sensors. Fetching all sensors records.");
         return sensorService.getSensorData();
     }
 
     @DeleteMapping("/api/v1/sensors")
     public Map<String, Boolean> deleteSensorsData() {
-        LOG.info("Received DELETE request on /api/v1/sensors. Deleting all sensors records.");
         return sensorService.deleteSensorsData();
     }
 }

@@ -43,15 +43,15 @@ public class UserService {
                 .orElseThrow(() -> new EntityNotFoundException("Telegram user with id: " + id + " - Not found")), ExternalUserDto.class);
     }
 
-    public ExternalUserDto saveUser(ExternalUser externalUser) {
-        checkForDuplicate("telegramId", externalUser.getTelegramId(), userRepository::findUserByTelegramId);
-        checkForDuplicate("name", externalUser.getName(), userRepository::findUserByName);
+    public ExternalUserDto saveUser(ExternalUserDto externalUserDto) {
+        checkForDuplicate("telegramId", externalUserDto.getTelegramId(), userRepository::findUserByTelegramId);
+        checkForDuplicate("name", externalUserDto.getName(), userRepository::findUserByName);
 
         return modelMapper.map(userRepository.save(ExternalUser.builder()
-                .name(externalUser.getName())
-                .telegramId(externalUser.getTelegramId())
-                .role(externalUser.getRole())
-                .isNotify(externalUser.getIsNotify())
+                .name(externalUserDto.getName())
+                .telegramId(externalUserDto.getTelegramId())
+                .role(externalUserDto.getRole())
+                .isNotify(externalUserDto.getIsNotify())
                 .build()), ExternalUserDto.class);
     }
 

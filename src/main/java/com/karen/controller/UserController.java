@@ -32,8 +32,8 @@ public class UserController {
     }
 
     @PostMapping("/api/v1/users")
-    public ExternalUserDto setUser(@RequestBody ExternalUser externalUser) {
-        return userService.saveUser(externalUser);
+    public ExternalUserDto setUser(@RequestBody ExternalUserDto externalUserDto) {
+        return userService.saveUser(externalUserDto);
     }
 
     @PutMapping("/api/v1/user")

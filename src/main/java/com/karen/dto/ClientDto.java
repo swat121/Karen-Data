@@ -18,4 +18,6 @@ public class ClientDto {
     private String mac;
 
     private String ssid;
+
+    private String version;
 }

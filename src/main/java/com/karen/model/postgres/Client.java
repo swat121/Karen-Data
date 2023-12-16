@@ -34,4 +34,8 @@ public class Client {
     @NonNull
     @JsonProperty("ssid")
     private String ssid;
+
+    @NonNull
+    @JsonProperty("version")
+    private String version;
 }

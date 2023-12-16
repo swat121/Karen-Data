@@ -41,6 +41,7 @@ public class ClientService {
                 .mac(clientDto.getMac())
                 .ssid(clientDto.getSsid())
                 .name(clientDto.getName())
+                .version(clientDto.getVersion())
                 .build();
         return modelMapper.map(clientRepository.save(client), ClientDto.class);
     }

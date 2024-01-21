@@ -1,16 +1,20 @@
 package com.karen.repository;
 
-import com.karen.model.Client;
+import com.karen.model.postgres.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Long> {
 
-    Client findClientByName (String name);
+    Optional<Client> findClientByName(String name);
+    Optional<Client> findClientByMac(String mac);
+    Optional<Client> findClientByIp(String ip);
 
     @Modifying
     @Transactional

@@ -1,4 +1,4 @@
-package com.karen.model;
+package com.karen.model.postgres;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,12 +14,14 @@ import java.time.LocalTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Temperature {
+public class Sensor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private double degreesCelsius;
+    private String name;
+    private String sensorId;
+    private String data;
 
     @Column(columnDefinition = "DATE")
     private LocalDate date;

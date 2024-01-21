@@ -14,6 +14,9 @@ public class RestTemplateConfig {
     @Bean
     @LoadBalanced
     public RestTemplate restTemplate() {
-        return new RestTemplateBuilder().setConnectTimeout(Duration.ofSeconds(5)).build();
+        return new RestTemplateBuilder()
+                .interceptors(new LoggingRequestInterceptor())
+                .setConnectTimeout(Duration.ofSeconds(5))
+                .build();
     }
 }
